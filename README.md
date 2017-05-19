@@ -1,4 +1,4 @@
 # Project-2
-# Whole Foods Recipe App 
-Our app uses the Whole Foods API to pull up sale items at Whole Foods Stores. We utilize these items to then populate a recipe page that relates to the sale items. We will be storing our data in MYSQL. We will also have a map page that displays the closest Whole Foods Store. 
+# My Brewery
+Our app utilizes the myBrewery API and the unTappd API to show you local breweries in your area and cross reference that with popular beers on Untappd. This will provide users with a very customizable and personalized expierence We will be storing our data in MYSQL. We will also have a map page that displays the closest Breweries. 
 Our extra libraries will be Materialize and Green Sock. 
