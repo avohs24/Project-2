@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-  },     
+  },
     {
 
           classMethods: {
@@ -12,13 +12,13 @@ module.exports = function(sequelize, DataTypes) {
 
               clientBrewery.belongsTo(models.client, {
                 foreignKey: {
-                  name: "Client ID",
+                  name: "ClientID",
                   allowNull: false
                 }
               });
               clientBrewery.belongsTo(models.location, {
                 foreignKey: {
-                  name: "Brewery ID",
+                  name: "BreweryID",
                   allowNull: false
                 }
               });

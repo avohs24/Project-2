@@ -11,13 +11,13 @@ module.exports = function(sequelize, DataTypes) {
 
               clientBeer.belongsTo(models.client, {
                 foreignKey: {
-                  name: "Client ID",
+                  name: "ClientID",
                   allowNull: false
                 }
               });
               clientBeer.belongsTo(models.beers, {
                 foreignKey: {
-                  name: "Beer ID",
+                  name: "BeerID",
                   allowNull: false
                 }
               });
