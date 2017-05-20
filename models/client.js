@@ -1,5 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
   var client = sequelize.define("client", {
+    id: {
+   type: DataTypes.INTEGER,
+   primaryKey: true,
+   allowNull: false,
+   autoIncrement: true,
+   unique: true
+ },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -29,12 +36,12 @@ module.exports = function(sequelize, DataTypes) {
         }
     },
       state: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: true,
         validate: {
           len: [2, 2]
         }
     },
-});
+  });
 return client;
 };
