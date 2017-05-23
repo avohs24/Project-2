@@ -8,6 +8,7 @@ app.get("/profile/:id", function(req, res) {
     var profileObject = {};
     var beerObject = {};
     var breweryObject = {};
+    var object = {};
     var cTrue = false;
     var beTrue = false;
     var brTrue = false;
@@ -53,7 +54,7 @@ app.get("/profile/:id", function(req, res) {
 
     function redirect() {
         if (cTrue === true && brTrue === true && beTrue === true) {
-            var object = Object.assign({}, profileObject, beerObject, breweryObject);
+            object = Object.assign({}, profileObject, beerObject, breweryObject);
             res.render("index", object);
         }
     }
