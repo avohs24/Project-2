@@ -59,55 +59,7 @@ var latsAndLongs = [];
 
     <body>
         <h3>My Google Maps Demo</h3>
-        <div id="map"></div>
-        <script type="text/javascript">
-            var latsAndLongs = [];
-
-            $('button').on('click', function() {
-                var queryURL = "https://api.brewerydb.com/v2/locations?key=20e94042de6a11f1f132e80800e9e225&22209&locality=Washington";
-
-                $.ajax({
-                        url: queryURL,
-                        beforeSend: function(request) {
-                            request.setRequestHeader("Authorization", "Negotiate");
-                        },
-                        async: true,
-                        method: 'GET'
-                    })
-                    .done(function(response) {
-                        var results = response.data;
-                        for (var i = 0; i < results.length; i++) {
-                            var lat = results[i].latitude;
-                            console.log("Latitude" + lat);
-                            var long = results[i].longitude;
-                            console.log("Longitude" + long);
-                            var latLong = {
-                                lat: lat,
-                                lng: long
-                            };
-                            console.log(latLong);
-                            latsAndLongs.push(latLong);
-                        }
-
-
-                        console.log(latsAndLongs);
-                    })
-            });
-
-            function initMap() {
-                var uluru = latsAndLongs;
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 4,
-                    center: uluru
-                });
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: map
-                });
-            }
-        </script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQJz1ltJYXEpNY4PAQyZ9pO7fK6cvfFp4&callback=initMap">
-        </script>
+        <div id="map-canvas" style="height: 500px; width: 800px; margin: 100px auto;"></div>
     </body>
 
 </html>
