@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breweires</title>
+    <title>Breweries</title>
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -28,6 +28,7 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="#!" class="brand-logo">THE BREWERIES</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="map.html">MAP</a></li>
@@ -36,8 +37,18 @@
                     <li><a href="login.html">Login</a></li>
                     <li><a href="signup.html">Sign Up</a></li>
                 </ul>
+                 <ul class="side-nav" id="mobile-demo">
+                  <li><a href="index.html">HOME</a></li>
+                    <li><a href="map.html">MAP</a></li>
+                    <li><a href="beer.html">BEER</a></li>
+                    <li><a href="brewery.html">Brewery</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
             </div>
         </nav>
+
+
         <!-- image  -->
         <!--   <div class="materialboxed"> -->
         <!--      <img  width="650 src="materialize/assets/images/img1.jpg"> -->
@@ -73,7 +84,7 @@
 
 
 
-        < script src = "//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" >
+        <script src = "//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
         </script>
         <!-- <script window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gasp/1.18.2/TweenLite.mis.js"></script>
@@ -82,8 +93,12 @@
         <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
         <!-- // Google Material js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-        <script src="js.main.js">
-        </script>
+        <script src="js.main.js"></script>
+        <script>
+         $(".button-collapse").sideNav();
+
+
+         </script>
 </body>
 
 </html>

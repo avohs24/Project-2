@@ -28,8 +28,17 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="#!" class="brand-logo">THE BREWERIES</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="index.html">HOME</a></li>
+                    <li><a href="map.html">MAP</a></li>
+                    <li><a href="beer.html">BEER</a></li>
+                    <li><a href="brewery.html">Brewery</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+                 <ul class="side-nav" id="mobile-demo">
+                  <li><a href="index.html">HOME</a></li>
                     <li><a href="map.html">MAP</a></li>
                     <li><a href="beer.html">BEER</a></li>
                     <li><a href="brewery.html">Brewery</a></li>
@@ -52,12 +61,6 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-                        <label for="disabled">Disabled</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
                         <input id="password" type="password" class="validate">
                         <label for="password">Password</label>
                     </div>
@@ -66,15 +69,6 @@
                     <div class="input-field col s12">
                         <input id="email" type="email" class="validate">
                         <label for="email">Email</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12">
-                        This is an inline input field:
-                        <div class="input-field inline">
-                            <input id="email" type="email" class="validate">
-                            <label for="email" data-error="wrong" data-success="right">Email</label>
-                        </div>
                     </div>
                 </div>
             </form>
