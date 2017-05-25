@@ -1,24 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breweires</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/css/styletest.css" media="screen,projection" />
-
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-
-<body>
     <div class="container">
         <!-- Dropdown Structure -->
         <ul id="dropdown" class="dropdown-content">
@@ -29,8 +8,17 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="#!" class="brand-logo">THE BREWERIES</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="index.html">HOME</a></li>
+                    <li><a href="map.html">MAP</a></li>
+                    <li><a href="beer.html">BEER</a></li>
+                    <li><a href="brewery.html">Brewery</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+                 <ul class="side-nav" id="mobile-demo">
+                  <li><a href="index.html">HOME</a></li>
                     <li><a href="map.html">MAP</a></li>
                     <li><a href="beer.html">BEER</a></li>
                     <li><a href="brewery.html">Brewery</a></li>
@@ -64,6 +52,7 @@
                 <div class="row">
                     <div class="input-field col s3">
                         <input name="password" id="password" type="password" class="validate">
+
                         <label for="password">Password</label>
                     </div>
                     <div class="input-field col s3">
@@ -156,87 +145,3 @@
             </div>
         </div>
         </footer>
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js">
-            $(".dropdown-button").dropdown();
-        </script>
-        <!-- <script window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gasp/1.18.2/TweenLite.mis.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/plugins/CSSPlugin.min.js"></script>
-        <!-- // jQuery -->
-        <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
-        <!-- // Google Material js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-        <script type="text/javascript" src="./node_modules/jquery-validation/dist/jquery.validate.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('select').material_select();
-                $("#formValidate").validate({
-                    rules: {
-                        first_name: {
-                            required: true,
-                            minlength: 1
-                        },
-                        last_name: {
-                            require: false,
-                            minlength: 1
-                        },
-                        userName: {
-                            require: true,
-                            min: 1
-                        },
-                        email: {
-                            required: true,
-                            email: true
-                        },
-                        password: {
-                            required: true,
-                            minlength: 5
-                        },
-                        passwordConfirm: {
-                            required: true,
-                            minlength: 5,
-                            equalTo: "#password"
-                        },
-                        street_address: {
-                            required: true,
-                            minlength: 1
-                        },
-                        city: {
-                            required: true,
-                            minlength: 1
-                        },
-                        state: {
-                            required: true,
-                            minlength: 1
-                        }
-                    },
-                    //For custom messages
-                    messages: {
-                        user_name: {
-                            required: "Enter a username",
-                            minlength: "Enter at least 5 characters"
-                        },
-
-                        curl: "Enter your website",
-                    },
-                    errorElement: 'div',
-                    errorPlacement: function(error, element) {
-                        var placement = $(element).data('error');
-                        if (placement) {
-                            $(placement).append(error)
-                        } else {
-                            error.insertAfter(element);
-                        }
-                    }
-                });
-            });
-
-
-        </script>
-</body>
-
-</html>
