@@ -88,5 +88,5 @@
         waitForMap(); // Intialize google map inside tab
 
         // When the window has finished loading create our google map below
-        google.maps.event.addDomListener(window, 'load', init);
+        //google.maps.event.addDomListener(window, 'load', init);
         //google.maps.event.addDomListener(window, 'load', initTabMap);
