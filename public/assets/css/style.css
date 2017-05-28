@@ -3,3 +3,10 @@ img {
      height:auto;
 }
 
+.logSignHeader{
+    font-size: calc(1vw + 1vh + .5vmin);
+    margin-top: 4vh;
+}
+.logSignHeader > p{
+    text-align: center;
+}

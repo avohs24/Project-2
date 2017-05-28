@@ -1,53 +1,59 @@
-        <div class="row">
-            <form class="col s12 create-update-form formValidate" id="formValidate" action="/signup" method="POST">
-                <div class="row">
-                    <div class="input-field col s3">
-                        <input name="first_name" id="first_name" type="text" class="validate">
-                        <label for="first_name">First Name</label>
-                    </div>
-                    <div class="input-field col s3">
-                        <input name="last_name" id="last_name" type="text" class="validate">
-                        <label for="last_name">Last Name</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s3">
-                        <input name="userName" id="userName" type="text" class="validate">
-                        <label for="userName">User Name</label>
-                    </div>
-                    <div class="input-field col s3">
-                        <input name="email" id="email" type="email" class="validate">
-                        <label for="email">Email</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s3">
-                        <input name="password" id="password" type="password" class="validate">
+<div class="row">
 
-                        <label for="password">Password</label>
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="passwordConfirm" type="password" class="validate">
-                        <label for="passwordConfirm" data-error="Password not match" data-success="Password Match">Confirm Password</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s3">
-                        <input name="street_address" id="street_address" type="text" class="validate">
-                        <label for="street_address">Street Address</label>
-                    </div>
-                    <div class="input-field col s3">
-                        <input name="city" id="city" type="text" class="validate">
-                        <label for="city">City</label>
-                    </div>
-                </div>
-                <div class = "row">
-                    <div class="input-field col s3">
-                        <input name="zipcode" id="zipcode" type="text" class="validate">
-                        <label for="zipcode">Zip Code</label>
-                    </div>
-                    <div class="input-field col s3">
-                        <select name="state" id="state">
+    <form class="col s6 create-user-form formValidate" id="formValidate" action="/signup" method="POST">
+        <div class="row">
+            <div class="col s12 logSignHeader">
+                <p> Join the Community Today! </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input name="first_name" id="first_name" type="text" class="validate">
+                <label for="first_name">First Name</label>
+            </div>
+            <div class="input-field col s6">
+                <input name="last_name" id="last_name" type="text" class="validate">
+                <label for="last_name">Last Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input name="userName" id="userName" type="text" class="validate">
+                <label for="userName">User Name</label>
+            </div>
+            <div class="input-field col s6">
+                <input name="email" id="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input name="password" id="password" type="password" class="validate">
+
+                <label for="password">Password</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="passwordConfirm" type="password" class="validate">
+                <label for="passwordConfirm" data-error="Password not match" data-success="Password Match">Confirm Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input name="street_address" id="street_address" type="text" class="validate">
+                <label for="street_address">Street Address</label>
+            </div>
+            <div class="input-field col s6">
+                <input name="city" id="city" type="text" class="validate">
+                <label for="city">City</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input name="zipcode" id="zipcode" type="text" class="validate">
+                <label for="zipcode">Zip Code</label>
+            </div>
+            <div class="input-field col s6">
+                <select name="state" id="state">
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
                         <option value="AZ">Arizona</option>
@@ -100,19 +106,38 @@
                         <option value="WI">Wisconsin</option>
                         <option value="WY">Wyoming</option>
                       </select>
-                    </div>
-                </div>
-
-                <div class="row">
-                  <div class="col s3">
-                    <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span> Beer Me!</button>
-                  </div>
-                </div>
-            </form>
-        </div>
-        <div class="footer-copyright row center">
-            <div class="container">
-                &copy;2017 Copyright Group ii
             </div>
         </div>
-        </footer>
+        <div class="row">
+            <div class="col s6">
+                <!-- <button type="submit" data-target="modal1" class="btn btn-primary btn-md " id="add-btn"> Beer Me!</button> -->
+                <a class="waves-effect waves-light btn" href="#modal1">Sign Up</a>
+            </div>
+        </div>
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h4>Legal Stuff</h4>
+            <p>This is a totally legit community of real people that only enjoys the presense of beer snobs. If you agree to these terms not only are you validating your chilness, but you will also give Yo Brew your first born child. In a totally chill way though. We will raise him (or her) to be the chillest beer bro (or bro-ette? idk) as we possibly can. Trust us. This is a fair deal for minimalist brewery finder. What are you going to use UnTappd. pshhhhhhhhhhhhhh. Get outta here with that weak shit. This is so much cooler and modern.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</button>
+            <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</button>
+          </div>
+        </div>
+    </form>
+</div>
+<footer class="footer-copyright row center">
+    <div class="container">
+        &copy;2017 Copyright Group ii
+    </div>
+    </div>
+</footer>
+<script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+        $('#modal1').modal('open');
+        $('#modal1').modal('close');
+    });
+</script>

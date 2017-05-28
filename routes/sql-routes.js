@@ -3,6 +3,32 @@ var db = require("../models");
 module.exports = function(app) {
 
 app.post("/signup", function(req, res) {
+  db.client.findOne({
+    where: {
+      email: req.body.email
+    }
+  }).then(function(data){
+    if (data !== null) {
+      res.redirect("/signup");
+      return;
+    }
+  }).catch(function(err){
+    console.log(err);
+  });
+
+  db.client.findOne({
+    where: {
+      userName: req.body.userName
+    }
+  }).then(function(data){
+    if (data !== null) {
+      res.redirect("/signup");
+      return;
+    }
+  }).catch(function(err){
+    console.log(err);
+  });
+
   db.client.create({
     firstName: req.body.first_name,
     lastName: req.body.last_name,
