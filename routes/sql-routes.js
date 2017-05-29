@@ -1,50 +1,18 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
-app.post("/signup", function(req, res) {
-  db.client.findOne({
-    where: {
-      email: req.body.email
-    }
-  }).then(function(data){
-    if (data !== null) {
-      res.redirect("/signup");
-      return;
-    }
-  }).catch(function(err){
-    console.log(err);
-  });
+app.post('/signup', passport.authenticate('local-signup', {
+      successRedirect : '/', // redirect to the Home Page
+      failureRedirect : '/signup', // redirect back to the signup page if there is an error
+      failureFlash : true // allow flash messages
+}));
 
-  db.client.findOne({
-    where: {
-      userName: req.body.userName
-    }
-  }).then(function(data){
-    if (data !== null) {
-      res.redirect("/signup");
-      return;
-    }
-  }).catch(function(err){
-    console.log(err);
-  });
+app.post('/login', passport.authenticate('local-login', {
+       successRedirect : '/', // redirect to the secure profile section
+       failureRedirect : '/signup', // redirect back to the signup page if there is an error
+       failureFlash : true // allow flash messages
+   }));
 
-  db.client.create({
-    firstName: req.body.first_name,
-    lastName: req.body.last_name,
-    userName: req.body.userName,
-    email: req.body.email,
-    password: req.body.password,
-    streetAddress: req.body.street_address,
-    city: req.body.city,
-    state: req.body.state,
-    zipcode: req.body.zipcode
-  }).then(function(data){
-
-  }).catch(function(err){
-    console.log(err);
-  });
-  console.log(req.body);
-})
 
 }
