@@ -3,30 +3,31 @@ var db = require("../models");
 module.exports = function(app, passport) {
 
 app.get("/", function(req, res){
-  res.render("index", { message: req.flash('loginMessage') });
+  res.render("index", {client : req.user, message: req.flash('Message') });
 });
 
 app.get("/map", function(req, res){
-  res.render("map", { message: req.flash('loginMessage') });
+  res.render("map", {client : req.user, message: req.flash('Message') });
 });
 
 app.get("/beers", function(req, res){
-  res.render("beer", { message: req.flash('loginMessage') });
+  res.render("beer", {client : req.user, message: req.flash('Message') });
 });
 
 app.get("/brewery", function(req, res){
-  res.render("brewery", { message: req.flash('loginMessage') });
+  res.render("brewery", {client : req.user, message: req.flash('Message') });
 });
 
 app.get("/signup", function(req, res){
-  res.render("signup", { message: req.flash('signupMessage') });
+  res.render("signup", {client : req.user, message: req.flash('Message') });
 });
 
-app.get('/profile', isLoggedIn, function(req, res) {
-    res.render("profile", {
-        user : req.user // get the user out of session and pass to template
+app.get("/user", function(req, res) {
+    res.render("user",{
+        client : req.user // get the user out of session and pass to template
     });
   });
+
 
 app.get('/logout', function(req, res) {
     req.logout();

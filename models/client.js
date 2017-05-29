@@ -1,5 +1,3 @@
-var bcrypt = require("bcrypt-nodejs");
-
 module.exports = function(sequelize, DataTypes) {
   var client = sequelize.define("client", {
     id: {
@@ -73,17 +71,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     }, {
-    freezeTableName: true,
-    instanceMethods: {
-      //Generating hash for password
-        generateHash: function(password) {
-            return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-        },
-        //checking if password is valid
-        validPassword: function(password) {
-            return bcrypt.compareSync(password, this.password);
-        },
-    },
+    freezeTableName: true
   });
 return client;
 };

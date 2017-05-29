@@ -25,6 +25,7 @@
 				<li><a href="./brewery">Brewery</a></li>
 				<li><a href="#loginModal">Log In</a></li>
 				<li><a href="#" data-activates="slide-out" class="profileShow">Profile</a></li>
+				<li><a href="./user">User</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -34,14 +35,14 @@
 				<div class="row margin">
 					<div class="input-field col s12">
 						<i class="mdi-social-person-outline prefix"></i>
-						<input id="email" type="text">
+						<input name=email id="email" type="text">
 						<label for="email" class="center-align">Email Address</label>
 					</div>
 				</div>
 				<div class="row margin">
 					<div class="input-field col s12">
 						<i class="mdi-action-lock-outline prefix"></i>
-						<input id="password" type="password">
+						<input name=password id="password" type="password">
 						<label for="password">Password</label>
 					</div>
 				</div>
@@ -70,30 +71,20 @@
 	</div>
 	<ul id="slide-out" class="side-nav">
 			<div class="userView">
-				<h3> Hi, UserName! </h3>
-				<p class="margin medium-small"><a href="#">Log Out</a></p>
+				<h3> Hi, {{client.userName}}</h3>
+				<form action="/logout" method="GET">
+				<button name="logout" type="submit">Log Out</button>
+			</form>
 			</div>
-
-				<h3> Your Favorite Breweries </h3>
-			<div class="bbLists">
-				{{#each brewery}}
-				<p id="breweryName">{{this.locationName}}</p>
-				<p id="beerAvail"> {{this.streetAddress}} </p>
-				{{/each}}
-				<h3> Your Favorite Beers </h3>
-				{{#each beers}}
-										<p id="beerName">{{this.beerName}}</p>
-										<p id="beerAvail"> {{this.available}} </p>
-				{{/each}}
-
 	</ul>
-	<div>
-		{{#if successMessage}}
-			{{successMessage}}
-		{{/if}}
-		{{#if errorMessage}}
-			{{errorMessage}}
-		{{/if}}
+	{{#if message}}
+	<div id="error-modal" class="modal">
+		<div class="modal-content">
+			<h3> oops...</h3>
+			<p id="error-message">{{message}}</p>
+		</div>
+	</div>
+	{{/if}}
  {{{ body }}}
 </body>
 <!-- // jQuery -->
@@ -104,9 +95,8 @@
 	$(document).ready(function() {
 		$('select').material_select();
 		$('.modal').modal();
-		$('#loginModal').modal('open');
-		$('#loginModal').modal('close');
 		$(".profileShow").sideNav();
+		$('#error-modal').modal('open');
 	});
 </script>
 
