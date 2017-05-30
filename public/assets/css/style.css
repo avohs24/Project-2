@@ -1,6 +1,18 @@
+html {
+  background: url("../images/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 img {
      width:100%;
      height:auto;
+}
+html,
+body{
+  height: 100%;
 }
 
 .logSignHeader{
@@ -13,4 +25,54 @@ img {
 
 .brand-logo{
   margin-left: 10px;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+.dropText,
+.dropdown-content li > a, .dropdown-content li > span{
+  color: #5a3f37 !important;
+}
+
+.valign-wrapper{
+  position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+#menuButton{
+  position: absolute;
+  right: 5%;
+}
+
+#menuDropdown{
+  position: absolute;
+  top: 100% !important;
+  right: 3% !important;
+}
+
+#signUpText{
+  color: wheat;
+}
+
+.signInput{
+  color: white;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }

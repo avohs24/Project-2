@@ -2,57 +2,51 @@
 
     <form class="col s6 create-user-form formValidate" id="formValidate" action="/signup" method="POST">
         <div class="row">
-            <div class="col s12 logSignHeader">
-                <p> Join the Community Today! </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
+            <div class="signInput input-field col s6">
                 <input name="first_name" id="first_name" type="text" class="validate">
                 <label for="first_name">First Name</label>
             </div>
-            <div class="input-field col s6">
+            <div class="signInput input-field col s6">
                 <input name="last_name" id="last_name" type="text" class="validate">
                 <label for="last_name">Last Name</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s6">
+            <div class="signInput input-field col s6">
                 <input name="userName" id="userName" type="text" class="validate">
                 <label for="userName">User Name</label>
             </div>
-            <div class="input-field col s6">
+            <div class="signInput input-field col s6">
                 <input name="email" id="email" type="email" class="validate">
                 <label for="email">Email</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s6">
+            <div class="signInput input-field col s6">
                 <input name="password" id="password" type="password" class="validate">
-
                 <label for="password">Password</label>
             </div>
-            <div class="input-field col s6">
+            <div class="signInput input-field col s6">
                 <input id="passwordConfirm" type="password" class="validate">
                 <label for="passwordConfirm" data-error="Password not match" data-success="Password Match">Confirm Password</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s6">
+            <div class="signInput input-field col s6">
                 <input name="street_address" id="street_address" type="text" class="validate">
                 <label for="street_address">Street Address</label>
             </div>
-            <div class="input-field col s6">
+            <div class="signInput input-field col s6">
                 <input name="city" id="city" type="text" class="validate">
                 <label for="city">City</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s6">
+            <div class="signInput input-field col s6">
                 <input name="zipcode" id="zipcode" type="text" class="validate">
                 <label for="zipcode">Zip Code</label>
             </div>
-            <div class="input-field col s6">
+            <div class="signInput input-field col s4">
                 <select name="state" id="state">
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
@@ -107,11 +101,8 @@
                         <option value="WY">Wyoming</option>
                       </select>
             </div>
-        </div>
-        <div class="row">
-            <div class="col s6">
-                <!-- <button type="submit" data-target="modal1" class="btn btn-primary btn-md " id="add-btn"> Beer Me!</button> -->
-                <a class="waves-effect waves-light btn" href="#modal1">Sign Up</a>
+            <div class="input-field col s2">
+                <a class="btn waves-effect waves-light brown darken-2" href="#modal1">Go!</a>
             </div>
         </div>
         <div id="modal1" class="modal">
@@ -122,25 +113,23 @@
                     with that weak shit. This is so much cooler and modern.</p>
             </div>
             <div class="modal-footer">
-                <button class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</button>
-                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</button>
+                <a class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
+                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</button>
             </div>
         </div>
     </form>
-    <div class="co s6">
-
+    <div class="col s6">
+      <div class="container">
+        <h1 id="signUpText"> Sign Up For The World's Simplest Brewery Finder </h1>
+      </div>
     </div>
 </div>
-<footer class="footer-copyright row center">
-    <div class="container">
-        &copy;2017 Copyright Group ii
-    </div>
-    </div>
-</footer>
+
 <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="assets/js/signUpValidate.js"
 <script type="text/javascript">
     $(document).ready(function() {
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         $('.modal').modal();
         $('#modal1').modal('open');
         $('#modal1').modal('close');

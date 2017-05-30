@@ -22,13 +22,14 @@ app.get("/signup", function(req, res){
   res.render("signup", {client : req.user, message: req.flash('Message') });
 });
 
+//Welcome Page 
 app.get("/user", function(req, res) {
     res.render("user",{
         client : req.user // get the user out of session and pass to template
     });
   });
 
-
+//Logout
 app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');

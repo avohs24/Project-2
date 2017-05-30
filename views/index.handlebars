@@ -1,27 +1,26 @@
-    <!-- image  -->
-    <!--   <div class="materialboxed"> -->
-    <!--      <img  width="650 src="materialize/assets/images/img1.jpg"> -->
-    <img src="assets/images/img5.jpg" alt="image" style =
-    "width: 100%" alt="My Pic">
-    <!-- random image -->
-    <!--  <div class="caption center-align">
-                    <h3>The Breweries</h3> -->
-    <!--     </div>
-                   </div> -->
-    <!-- //search bar// -->
-    <div class="nav-wrapper">
-        <form>
-            <div class="input-field">
-                <input id="search" type="search" required>
-                <label class="label-icon" for="search"><i class="material-icons">search</i>Seach Near You</label>
-                <i class="material-icons">close</i>
-            </div>
-        </form>
-    </div>
-    <!-- Footer -->
-    <div class="footer-copyright row center">
-        <div class="container">
-            &copy;2017 Copyright Group ii
-        </div>
-    </div>
-    </footer>
+<div class="row">
+  <div col>
+</div>
+<form>
+<div class="container valign-wrapper">
+<nav>
+   <div class="nav-wrapper">
+       <div class="input-field hoverable brown darken-2">
+         <input id="search" type="search" placeholder="Search for a Brewery Near You" required>
+         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+         <button class="btn waves-effect waves-light brown darken-2" id="search-button" type="submit" name="action">Search</button>
+         <i class="material-icons"></i>
+         </form>
+       </div>
+   </div>
+ </nav>
+ </div>
+
+
+
+    <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+  </script>

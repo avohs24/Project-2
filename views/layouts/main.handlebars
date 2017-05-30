@@ -10,23 +10,32 @@
 	<!--Import materialize.css-->
 	<link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection" />
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<script type="text/javascript" src="assets/js/angular.min.js"></script>
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
-	<nav>
-		<div class="nav-wrapper">
+	<main>
+	<nav class="brown darken-2">
+		<div class="nav-wrapper" ng-controller="navCtrl">
 			<a href="./" class="brand-logo">Yo Brew</a>
 			<ul class="right hide-on-med-and-down">
 				<li><a href="./map">Map</a></li>
 				<li><a href="./beers">Beer</a></li>
 				<li><a href="./brewery">Brewery</a></li>
-				<li><a href="#loginModal">Log In</a></li>
-				<li><a href="#" data-activates="slide-out" class="profileShow">Profile</a></li>
-				<li><a href="./user">User</a></li>
+				{{#if client}}<li><a href="#" data-activates="slide-out" class="profileShow">Profile</a></li>
+				{{else}}<li><a href="#loginModal">Log In</a></li>{{/if}}
 			</ul>
+
+			<a class='dropdown-button hide-on-large-only' id="menuButton" href='#' data-activates='menuDropdown'><i class="material-icons">menu</i></a>
+			<ul id='menuDropdown' class='dropdown-content'>
+				<li><a href="./map" class="dropText">Map</a></li>
+				<li><a href="./beers" class="dropText">Beer</a></li>
+				<li><a href="./brewery" class="dropText">Brewery</a></li>
+				{{#if client}}<li><a href="#" data-activates="slide-out" class="profileShow dropText">Profile</a></li>
+				{{else}}<li><a href="#loginModal" class="dropText">Log In</a></li>{{/if}}
+			</ul>
+
 		</div>
 	</nav>
 	<div id="loginModal" class="modal">
@@ -54,7 +63,7 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<button type="submit" class="btn waves-effect waves-light col s12">Agree</button>
+						<button type="submit" class="btn waves-effect waves-light col s12 brown darken-2">Sign In</button>
 					</div>
 				</div>
 				<div class="row">
@@ -86,6 +95,14 @@
 	</div>
 	{{/if}}
  {{{ body }}}
+ </main>
+ <footer class="page-footer footer brown darken-2">
+	 <div class="footer-copyright">
+		 <div class="container">
+		 © 2017 Copyright
+		 </div>
+	 </div>
+ </footer>
 </body>
 <!-- // jQuery -->
 <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
@@ -97,6 +114,7 @@
 		$('.modal').modal();
 		$(".profileShow").sideNav();
 		$('#error-modal').modal('open');
+		$('.button-collapse').sideNav();
 	});
 </script>
 
