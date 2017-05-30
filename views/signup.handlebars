@@ -1,50 +1,50 @@
 <div class="row">
 
-    <form class="col s6 create-user-form formValidate" id="formValidate" action="/signup" method="POST">
+    <form class="col s6 create-user-form formValidate" onsubmit="return checkForm(this)" id="formValidate" action="/signup" method="POST">
         <div class="row">
             <div class="signInput input-field col s6">
-                <input name="first_name" id="first_name" type="text" class="validate">
-                <label for="first_name">First Name</label>
+                <input required name="first_name" id="first_name" type="text" class="validate">
+                <label for="first_name" data-error="Please Enter A First Name">First Name</label>
             </div>
             <div class="signInput input-field col s6">
-                <input name="last_name" id="last_name" type="text" class="validate">
-                <label for="last_name">Last Name</label>
+                <input required name="last_name" id="last_name" type="text" class="validate">
+                <label for="last_name" data-error="Please Enter A Last Name">Last Name</label>
             </div>
         </div>
         <div class="row">
             <div class="signInput input-field col s6">
-                <input name="userName" id="userName" type="text" class="validate">
-                <label for="userName">User Name</label>
+                <input required name="userName" id="userName" type="text" class="validate">
+                <label for="userName" data-error="Please Enter A User Name">User Name</label>
             </div>
             <div class="signInput input-field col s6">
-                <input name="email" id="email" type="email" class="validate">
-                <label for="email">Email</label>
+                <input required name="email" id="email" type="email" class="validate">
+                <label for="email" data-error="Please Enter A Valid email">Email</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input required name="p1" id="p1" type="password" class="validate">
+                <label for="p1">Password</label>
+            </div>
+            <div class="input-field col s6">
+                <input required id="passwordConfirm" type="password">
+                <label id="lblPasswordConfirm" for="passwordConfirm" data-error="Password not match" data-success="Password Match">Password (Confirm)</label>
             </div>
         </div>
         <div class="row">
             <div class="signInput input-field col s6">
-                <input name="password" id="password" type="password" class="validate">
-                <label for="password">Password</label>
+                <input required name="street_address" id="street_address" type="text" class="validate">
+                <label for="street_address" data-error="Please Enter A Street Address">Street Address</label>
             </div>
             <div class="signInput input-field col s6">
-                <input id="passwordConfirm" type="password" class="validate">
-                <label for="passwordConfirm" data-error="Password not match" data-success="Password Match">Confirm Password</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="signInput input-field col s6">
-                <input name="street_address" id="street_address" type="text" class="validate">
-                <label for="street_address">Street Address</label>
-            </div>
-            <div class="signInput input-field col s6">
-                <input name="city" id="city" type="text" class="validate">
-                <label for="city">City</label>
+                <input required name="city" id="city" type="text" class="validate">
+                <label for="city" data-error="Please Enter A City">City</label>
             </div>
         </div>
         <div class="row">
             <div class="signInput input-field col s6">
-                <input name="zipcode" id="zipcode" type="text" class="validate">
-                <label for="zipcode">Zip Code</label>
+                <input required name="zipcode" id="zipcode" type="text" class="validate">
+                <label for="zipcode" data-error="Please Enter A Zipcode">Zip Code</label>
             </div>
             <div class="signInput input-field col s4">
                 <select name="state" id="state">
@@ -102,7 +102,7 @@
                       </select>
             </div>
             <div class="input-field col s2">
-                <a class="btn waves-effect waves-light brown darken-2" href="#modal1">Go!</a>
+                <a class="btn waves-effect waves-light brown darken-2" href="#modal1" id="subTest">Go!</a>
             </div>
         </div>
         <div id="modal1" class="modal">
@@ -126,13 +126,24 @@
 </div>
 
 <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
-<script type="text/javascript" src="assets/js/signUpValidate.js"
 <script type="text/javascript">
     $(document).ready(function() {
         $('.modal').modal();
-        $('#modal1').modal('open');
-        $('#modal1').modal('close');
         $('.slider').slider();
+    });
+    $("#p1").on("focusout", function (e) {
+        if ($(this).val() != $("#passwordConfirm").val()) {
+            $("#passwordConfirm").removeClass("valid").addClass("invalid");
+        } else {
+            $("#passwordConfirm").removeClass("invalid").addClass("valid");
+        }
+    });
+
+    $("#passwordConfirm").on("keyup", function (e) {
+        if ($("#p1").val() != $(this).val()) {
+            $(this).removeClass("valid").addClass("invalid");
+        } else {
+            $(this).removeClass("invalid").addClass("valid");
+        }
     });
 </script>

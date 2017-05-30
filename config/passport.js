@@ -24,7 +24,7 @@ module.exports = function(app, passport) {
   passport.use('local-signup', new LocalStrategy({
       // by default, local strategy uses username and password, we will override with email
       usernameField: 'email',
-      passwordField: 'password',
+      passwordField: 'p1',
       passReqToCallback: true // allows us to pass back the entire request to the callback
     },
     function(req, username, password, done) {
@@ -58,6 +58,7 @@ module.exports = function(app, passport) {
                     state: req.body.state,
                     zipcode: req.body.zipcode
                 };
+                console.log(newUser);
                 db.client.create(newUser).then(function(data) {
                     //If there is no data created
                     if (!data) {
@@ -65,7 +66,7 @@ module.exports = function(app, passport) {
                     }
                     //If a user has been created return with user object
                     if (data && data.dataValues) {
-                        return done(null, data.dataValues, req.flash('Message', 'Your account has been created! Time to hit the bars!'));
+                        return done(null, data.dataValues, req.flash('Message', 'Welcome to Yo Brew! Time to hit the bars'));
                     }
                 }).catch(function(err){
                   console.log(err);
