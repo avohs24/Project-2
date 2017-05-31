@@ -1,6 +1,6 @@
 var db = require("../models");
 
-module.exports = function(app, passport) {
+module.exports = function(app) {
 
 app.get("/", function(req, res){
   res.render("index", {client : req.user, message: req.flash('Message') });
@@ -11,10 +11,10 @@ app.get("/map", function(req, res){
 });
 
 app.get("/beers", function(req, res){
-  res.render("beer", {client : req.user, message: req.flash('Message') });
+    res.render("beer", {client : req.user, message: req.flash('Message')});
 });
 
-app.get("/brewery", function(req, res){
+app.get("/brewery/:id?", function(req, res){
   res.render("brewery", {client : req.user, message: req.flash('Message') });
 });
 

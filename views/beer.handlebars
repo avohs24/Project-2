@@ -1,20 +1,28 @@
     <h2>Styles of Beer</h2>
-    <label>Let's Choose</label>
-    <select class="browser-default">
-        <option value="" disabled selected>Choose your option</option>
-        <option value="1">British Origin Ales</option>
-        <option value="2">Irish Origin Ales/option>
-            <option value="3">North American Origin Ales</option>
-            <option value="4">German Origin Ales</option>
-            <option value="5">Belgian And French Origin Ales</option>
-            <option value="6">International Ale Styles</option>
-            <option value="7">European-germanic Lager</option>
-            <option value="8">North American Lager</option>
-            <option value="9">Other Lager</option>
-            <option value="10">International Styles</option>
-            <option value="11">Hybrid/mixed Beer</option>
-            <option value="12">Mead, Cider, and Perry</option>
-            <input type="submit" value="Submit">
-            </form>
-            <p>Choose a the style of beer, and click the "Submit" button to send input to the server.</p>
-    </select>
+    <div class="row">
+        <div class="col s3">
+          <label> Category </label>
+          <select class="browser-default" id="category">
+              <option></option>
+          </select>
+        </div>
+        <div class="col s3">
+          <label> Style </label>
+          <select class="browser-default" id="style">
+              <option></option>
+          </select>
+        </div>
+
+    </div>
+<!-- <p id="JSON1"> {{jsonObject}} </p> -->
+<script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+var fullJSON;
+$(document).ready(function() {
+    $.ajax({
+      url: "./categories",
+    }).done(function(data) {
+      fullJSON = data;
+    });
+});
+</script>

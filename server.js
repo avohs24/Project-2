@@ -1,4 +1,6 @@
 var express = require("express");
+var request = require("request");
+var rp = require('request-promise');
 var app = express();
 var methodOverride = require("method-override");
 var passport = require('passport');
@@ -13,7 +15,6 @@ var session = require('express-session');
 var expressValidator = require("express-validator");
 
 var db = require("./models");
-
 
 app.set('port', (process.env.PORT || 5000)); //Set up port
 app.use(express.static(process.cwd() + "/public")); //set path dependencies to public folder
@@ -48,9 +49,10 @@ app.use(passport.session()); // persistent login sessions
 
 
 // Import routes and give the server access to them.
-require("./routes/html-routes.js")(app, passport);
+require("./routes/html-routes.js")(app);
 require("./routes/sql-routes.js")(app, passport);
 require('./config/passport')(app, passport); // pass passport for configuration
+require("./routes/brewerydb-routes.js")(app, rp);
 
 
 

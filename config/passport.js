@@ -94,7 +94,7 @@ module.exports = function(app, passport) {
                   if (!bcrypt.compareSync(password, data.password))
                       return done(null, false, req.flash('Message', 'Wrong password, please try again')); // create the loginMessage and save it to session as flashdata
                   // all is well, return successful user
-                  return done(null, data.dataValues);
+                  return done(null, data.dataValues, req.flash('Message', 'Welcome Back!'));
                 })
                 .catch(function(err){
                   console.log(err);
