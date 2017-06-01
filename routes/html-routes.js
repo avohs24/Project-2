@@ -1,6 +1,6 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function(app, rp) {
 
 app.get("/", function(req, res){
   res.render("index", {client : req.user, message: req.flash('Message') });
@@ -15,7 +15,7 @@ app.get("/beers", function(req, res){
 });
 
 app.get("/brewery/:id?", function(req, res){
-  res.render("brewery", {client : req.user, message: req.flash('Message') });
+  res.render("brewery", {client : req.user, message: req.flash('Message')});
 });
 
 app.get("/signup", function(req, res){
