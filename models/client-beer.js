@@ -9,13 +9,15 @@ module.exports = function(sequelize, DataTypes) {
           classMethods: {
             associate: function(models) {
 
-              clientBeer.belongsTo(models.client, {
+              clientBeer.belongsToMany(models.client, {
+                through: clientBeer,
                 foreignKey: {
                   name: "Client ID",
                   allowNull: false
                 }
               });
-              clientBeer.belongsTo(models.beers, {
+              clientBeer.belongsToMany(models.beers, {
+                through: clientBeer,
                 foreignKey: {
                   name: "Beer ID",
                   allowNull: false

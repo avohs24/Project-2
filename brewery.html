@@ -4,7 +4,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breweires</title>
-
      <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -42,7 +41,7 @@
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
-                        <p>We have the best beer.</p>
+                        <p class-"theBreweries">List Breweries Here</p>
                     </div>
                     <div class="card-action">
                         <a href="#">Visit Us</a>
@@ -64,35 +63,6 @@
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js">
-        $(".dropdown-button").dropdown();
-
-          // This is our API key
-        var APIKey = "70a61c6760fc3a51e28ad788197d9359";
-        var selection = "breweries";
-        
-        // Here we are building the URL we need to query the database
-        var queryURL = "http://api.brewerydb.com/v2/" + selection + "?key=" + APIKey + "&name=stella"; 
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        
-        // We store all of the retrieved data inside of an object called "response"
-        .done(function(response) {
-        // Log the queryURL
-        console.log(queryURL);
-        // Log the resulting object
-        console.log(response);
-        
-        // Transfer content to HTML
-        $(".name").html("<h1>" + "Your Beer: "  + response.data[0].name + "</h1>");
-        $(".type").html("Type " + response.data[0].description +"<br><br>");
-        $(".brewery").html("Humidity: " + response);
-        
-
-      });
-
         < script src = "//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" >
         </script>
         <!-- <script window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script> -->
@@ -100,7 +70,7 @@
         <!-- // jQuery -->
         <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
         <!-- // Google Material js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+      
         <script src="js/main.js">
         </script>
 </body>
