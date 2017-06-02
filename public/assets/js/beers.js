@@ -109,8 +109,17 @@ $(document).ready(function() {
                 thisDiv += "</div>\n"
                 list += thisDiv;
             }
-            list += "</div>";
+            list += "</div>\n";
+            list += "<button id='previous' class='btn waves-effect waves-light brown darken-2'>Previous</button>"
+            list += "<button id='next' class='btn waves-effect waves-light brown darken-2'>Next</button>"
             $("#beerlist").html(list);
+            // var page = 1
+            // for (var i = 7; i < Object.keys(results).length; i + 7){
+            //   var fSlice = [i] - 7
+            //   var thispage = "page" + page;
+            //   $("#wrap > div").slice(fSlice ,[i]).addClass(thispage);
+            // }
+
           }
           createList(results);
           var page = 1;
