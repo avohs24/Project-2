@@ -1,2 +1,24 @@
 <h1>Welcome</h1>
 {{client.userName}}
+<ul>
+	{{#each beers}}
+	{{#each brewery}}
+	<li>
+		{{this.name}}
+		<form action="/{{this.id}}?_method=PUT" method="POST">
+			<input type="hidden" name="beers" value="true">
+		</form>
+	</li>
+	{{/each}}
+</ul>
+<ul>
+	{{#each beers}}
+	{{#each brewery}}
+	<li>
+		{{this.name}}
+		<form action="/{{this.id}}?_method=PUT" method="POST">
+			<input type="hidden" name="brewery" value="true">
+		</form>
+	</li>
+	{{/each}}
+</ul>
