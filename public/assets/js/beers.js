@@ -93,27 +93,48 @@ $(document).ready(function() {
 
           function createList(results){
             $("#beerlist").empty();
-            var list = "";
+            var list = "<div id='wrap'>\n";
             for (var i = 0; i < Object.keys(results).length; i++){
-                var thisDiv = "<div value='" + results[i].id +"'> ";
-                thisDiv += "<p class='name'> Name: " + results[i].name + " </p> \n";
+                var thisDiv = "<div id='beerID" + [i] +"' bID='" + results[i].id +"'>\n ";
+                thisDiv += "<h3>Name: </h3>";
+                thisDiv += "<p class='name' id='name"+ [i] +"'>" + results[i].name + "</p> \n";
+                thisDiv += "<h3>Description</h3>\n"
                 if (results[i].description === undefined){
-                thisDiv += "<p class='description'> Description: N/A </p> </div> \n";
+                thisDiv += "<p class='description' id='description"+ [i] + "'> N/A </p> \n";
                 }
                 else{
-                thisDiv += "<p class='description'> Description:" + results[i].description + "</p> </div> \n";
+                thisDiv += "<p class='description' id='description"+ [i] + "'>" + results[i].description + "</p> \n";
                 }
-
+                thisDiv += "<button value='" + [i] + "' class='addClientBeer'> Save Beer </button>"
+                thisDiv += "</div>\n"
                 list += thisDiv;
             }
-            console.log(list, "List");
+            list += "</div>";
             $("#beerlist").html(list);
           }
           createList(results);
+          var page = 1;
+
+          $(".addClientBeer").click(function(){
+            fired_button = $(this).val();
+            var name = "#name" + fired_button;
+            var description = "#description" + fired_button;
+            var beerID = "#beerID" + fired_button;
+            name = $(name).text();
+            description = $(description).text();
+            beerID = $(beerID).attr("bID");
+            console.log(name);
+            console.log(description);
+            console.log(beerID);
+            $.post("./addBeer", {"beerID" : beerID, "name" : name, "description" : description}
+          ).done(function(data){
+
+          })
+
+          });
         });
     });
-    // // bonus: how to access the download link
-    // $model.change(function() {
-    //     $('#download-link').attr('href', selectValues[$vendor.val()][$model.val()]).show();
-    // });
+
+
+
 });
