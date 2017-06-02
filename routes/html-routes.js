@@ -6,7 +6,7 @@ app.get("/", function(req, res){
   res.render("index", {client : req.user, message: req.flash('Message') });
 });
 
-app.get("/map", function(req, res){
+app.get("/map:address*?", function(req, res){
   res.render("map", {client : req.user, message: req.flash('Message')});
 });
 
@@ -34,7 +34,9 @@ app.get('/logout', function(req, res) {
 });
 
 app.post('/', function(req, res){
-  res.redirect('/map');
+  console.log(req.body);
+  res.render("map", {address: req.body});
+
 })
 
 };
