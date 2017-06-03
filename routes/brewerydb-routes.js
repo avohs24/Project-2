@@ -14,6 +14,14 @@ module.exports = function(app, rp) {
     rp(query).then(function (body) {
       res.send(body);
     });
-  })
-  
+  });
+
+  app.post("/brewerysearch", function(req, res){
+    console.log(req.body);
+    var query = "http://api.brewerydb.com/v2/brewery/" + req.body.brewId + "?key=20e94042de6a11f1f132e80800e9e225" 
+    console.log(query);
+    rp(query).then(function (body){
+      res.send(body);
+    });
+  });
 }

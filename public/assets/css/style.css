@@ -91,3 +91,23 @@ main {
 .beerItem{
   text-align: center;
 }
+
+.beerName,
+.beerDescription{
+  font-size: calc(1.25vw + 1.25vh + .8vmin);
+  color: wheat;
+}
+
+.beerContent{
+  font-size: calc(1vw + 1vh + .5vmin);
+  color: wheat;
+}
+
+.prevNext{
+  position: absolute;
+  bottom: 90px;
+}
+
+#styles{
+  color: wheat;
+}

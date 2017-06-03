@@ -110,23 +110,29 @@ $(document).ready(function() {
             var thisList = "<div class='row'>";
               for (var i = page; i < thispageEnd; i++){
               var thisDiv = "<div class='col s4 beerItem' id='beerID" + i +"' bID='" + results[i].id +"'>\n ";
-                  thisDiv += "<h3>Name: </h3>";
-                  thisDiv += "<p class='name' id='name"+ i +"'>" + results[i].name + "</p> \n";
-                  thisDiv += "<h3>Description</h3>\n"
+                  thisDiv += "<button value='" + [i] + "' class='addClientBeer btn waves-effect waves-light'> Save Beer </button> <button value='" + [i] + "' class='addClientBeer btn waves-effect waves-light blue'> More Info </button>"
+                  thisDiv += "<h3 class='beerName'>Name: </h3> ";
+                  thisDiv += "<p class='beerContent' id='name"+ i +"'>" + results[i].name + "</p> \n";
+                  thisDiv += "<h3 class='beerDescription'>Description</h3>\n"
                   if (results[i].description === undefined){
-                  thisDiv += "<p class='description' id='description"+ i + "'> N/A </p> \n";
+                  thisDiv += "<p class='beerContent' id='description"+ i + "'> N/A </p> \n";
                   }
                   else{
-                  thisDiv += "<p class='description' id='description"+ i + "'>" + results[i].description + "</p> \n";
+                    if (results[i].description.length > 150){
+                      thisDiv += "<p class='beerContent' id='description"+ i + "'>" + results[i].description.substr(0, 150) + "...</p> \n";
+                    }
+                    else {
+                      thisDiv += "<p class='beerContent' id='description"+ i + "'>" + results[i].description + "</p> \n";
+                    }
+
                   }
-                  thisDiv += "<button value='" + [i] + "' class='addClientBeer'> Save Beer </button>"
                   thisDiv += "</div>\n"
                   thisList += thisDiv;
             }
             thisList += "</div>\n"
             thisList += "<div class='row'>"
-            thisList += "<div class='col s4 beerButton'> <button class='btn waves-effect waves-light brown darken-2' id='previous'>Previous</button></div>\n"
-            thisList += "<div class='col s4 offset-s4 beerButton'> <button class='btn waves-effect waves-light brown darken-2' id='next'>Next</button></div>"
+            thisList += "<div class='col s4 beerButton'> <button class='btn waves-effect waves-light brown darken-2 prevNext' id='previous'>Previous</button></div>\n"
+            thisList += "<div class='col s4 offset-s4 beerButton'> <button class='btn waves-effect waves-light brown darken-2 prevNext' id='next'>Next</button></div>"
             $("#beerlist").html(thisList);
 
             $("#next").click(() =>{
