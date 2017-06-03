@@ -3,8 +3,9 @@ module.exports = function(sequelize, DataTypes) {
     clBrRelation: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
     },
-  },     
+  },
     {
 
           classMethods: {
@@ -12,13 +13,13 @@ module.exports = function(sequelize, DataTypes) {
 
               clientBrewery.belongsTo(models.client, {
                 foreignKey: {
-                  name: "Client ID",
+                  name: "clientID",
                   allowNull: false
                 }
               });
               clientBrewery.belongsTo(models.location, {
                 foreignKey: {
-                  name: "Brewery ID",
+                  name: "breweryID",
                   allowNull: false
                 }
               });

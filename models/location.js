@@ -25,13 +25,6 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 50]
       }
   },
-      assBrewery: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [1, 50]
-        }
-    },
 });
 return location;
 };

@@ -14,24 +14,7 @@ module.exports = function(sequelize, DataTypes) {
     beerName: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [1, 50]
-      }
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-      available: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [1, 50]
-        }
-    },
+    }
 });
 return beers;
 };

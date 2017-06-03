@@ -2,24 +2,23 @@ module.exports = function(sequelize, DataTypes) {
   var clientBeer = sequelize.define("clientBeer", {
     clBeRelation: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     }
     },     {
 
           classMethods: {
             associate: function(models) {
 
-              clientBeer.belongsToMany(models.client, {
-                through: clientBeer,
+              clientBeer.belongsTo(models.client, {
                 foreignKey: {
-                  name: "Client ID",
+                  name: "clientID",
                   allowNull: false
                 }
               });
-              clientBeer.belongsToMany(models.beers, {
-                through: clientBeer,
+              clientBeer.belongsTo(models.beers, {
                 foreignKey: {
-                  name: "Beer ID",
+                  name: "beerID",
                   allowNull: false
                 }
               });

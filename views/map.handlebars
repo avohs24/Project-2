@@ -1,4 +1,5 @@
-    <div class="row">
+  <div class="row">
+    <!-- form to enter state you would like to populate -->
     <form>
         <div class="row">
             <div class="input-field col s12">
@@ -11,7 +12,7 @@
                     <option value="CO">Colorado</option>
                     <option value="CT">Connecticut</option>
                     <option value="DE">Delaware</option>
-                    <option value="DC">D.C.</option>
+                    <option value="DC">District of Columbia</option>
                     <option value="FL">Florida</option>
                     <option value="GA">Georgia</option>
                     <option value="HI">Hawaii</option>
@@ -64,8 +65,9 @@
 <button id='submit'>Submit</button>
 
 
-
-
+<script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
+<!--
+CSS for the map to show up  -->
     <style>
         #map {
             height: 400px;
@@ -81,21 +83,24 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQJz1ltJYXEpNY4PAQyZ9pO7fK6cvfFp4&callback=initMap">
     </script>
     <script type="text/javascript">
+
+
       $(document).ready(function() {
       $('select').material_select();
         });
 
         var map;
-        // var state = $("option").text();
-            document.getElementById("state").value;
-            var state = $('#state option:state');
-            console.log(select.html());
+        var place = JSON.parse(localStorage.getItem('place'));
 
+query(place);
+//function to add state to API query
 
-        $('button').on('click', function() {
-                var queryURL = "https://api.brewerydb.com/v2/locations?key=70a61c6760fc3a51e28ad788197d9359&region=" + state;
+            function query(state){
+                // var queryURL = "https://api.brewerydb.com/v2/locations?key=70a61c6760fc3a51e28ad788197d9359&region=" + state;
+                var query1 = "https://api.brewerydb.com/v2/locations?key=70a61c6760fc3a51e28ad788197d9359&region=" + place.address_components[4].long_name;
+                console.log(query1);
                 $.ajax({
-                        url: queryURL,
+                        url: query1,
                         beforeSend: function(request) {
                             request.setRequestHeader("Authorization", "Negotiate");
                         },
@@ -107,9 +112,9 @@
                         var cleanData = cleanUp(results);
                         createMarkers(cleanData);
                     })
+            }
 
-        });
-
+//format results of API get request to make it easier to work with and push all information needed to an empty array
         function cleanUp(results) {
             var latsAndLongs = [];
             for (var i = 0; i < results.length; i++) {
@@ -117,29 +122,36 @@
                 var long = results[i].longitude;
                 var name = results[i].brewery.name;
                 var address = results[i].streetAddress;
+                var hoursOfOperation = results[i].hoursOfOperation;
+                var breweryId = results[i].id;
                 var latLong = {
                     name: name,
                     lat: lat,
                     lng: long,
-                    address: address
+                    address: address,
+                    hoursOfOperation: hoursOfOperation,
+                    breweryId: breweryId
                 };
                 latsAndLongs.push(latLong);
             }
             return latsAndLongs;
         }
 
+//initialize the map and make the address from index page the center of map
+
         function initMap() {
-            var uluru = {
-                lat: 38.9072,
-                lng: -77.0369
-            };
+            var uluru = place.geometry.location;
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
+                zoom: 15,
                 center: uluru,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
         };
 
+
+var brewID;
+
+//create a marker for each object returned from the API get request
         function createMarkers(markerObjs) {
             var marker, i;
             for (var i = 0; i < markerObjs.length; i++) {
@@ -147,13 +159,26 @@
                     position: new google.maps.LatLng(markerObjs[i].lat, markerObjs[i].lng),
                     map: map
                 });
+//add a pop-up view for each marker
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
                         var infowindow = new google.maps.InfoWindow();
-                        infowindow.setContent("<strong>" + markerObjs[i].name + "</strong>" + "<br>" + markerObjs[i].address + "</br>");
+                        infowindow.setContent("<strong>" + markerObjs[i].name + "</strong>" + "<br>" + markerObjs[i].address + "</br>" + "<br> "+ markerObjs[i].hoursOfOperation + "</br>" + "<button id = 'moreInfo'> More Information </button>");
                         infowindow.open(map, marker);
-                    }
+                        console.log(markerObjs[i].breweryId);
+                        localStorage.setItem('brewID', JSON.stringify(markerObjs[i].breweryId));
+                        $('#moreInfo').click(function(){
+                          $.get('brewery/:id?', function(data){
+                            {brewID: markerObjs[i].breweryId}
+                          });
+                        })
+                  }
                 })(marker, i));
             }
-        }
+
+
+          }
+
+
+
     </script>

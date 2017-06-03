@@ -2,7 +2,8 @@ module.exports = function(sequelize, DataTypes) {
   var beerBrewery = sequelize.define("beerBrewery", {
     beBrRelation: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     }
   },     {
 
@@ -11,13 +12,13 @@ module.exports = function(sequelize, DataTypes) {
 
             beerBrewery.belongsTo(models.beers, {
               foreignKey: {
-                name: "Beer ID",
+                name: "beerID",
                 allowNull: false
               }
             });
             beerBrewery.belongsTo(models.location, {
               foreignKey: {
-                name: "Brewery ID",
+                name: "breweryID",
                 allowNull: false
               }
             });
