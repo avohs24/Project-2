@@ -90,26 +90,17 @@ CSS for the map to show up  -->
         });
 
         var map;
-
         var place = JSON.parse(localStorage.getItem('place'));
 
-// on the button click run myFunction to grab the state which was selected
-            $('button').on('click', function(){
-              function myFunction() {
-                var state = $('#state option:selected');
-                console.log(state);
-                query(state.text());
-              }
-              myFunction();
-            });
-
-
+query(place);
 //function to add state to API query
 
             function query(state){
-                var queryURL = "https://api.brewerydb.com/v2/locations?key=70a61c6760fc3a51e28ad788197d9359&region=" + state;
+                // var queryURL = "https://api.brewerydb.com/v2/locations?key=70a61c6760fc3a51e28ad788197d9359&region=" + state;
+                var query1 = "https://api.brewerydb.com/v2/locations?key=70a61c6760fc3a51e28ad788197d9359&region=" + place.address_components[4].long_name;
+                console.log(query1);
                 $.ajax({
-                        url: queryURL,
+                        url: query1,
                         beforeSend: function(request) {
                             request.setRequestHeader("Authorization", "Negotiate");
                         },
@@ -121,8 +112,7 @@ CSS for the map to show up  -->
                         var cleanData = cleanUp(results);
                         createMarkers(cleanData);
                     })
-
-        }
+            }
 
 //format results of API get request to make it easier to work with and push all information needed to an empty array
         function cleanUp(results) {
@@ -139,7 +129,8 @@ CSS for the map to show up  -->
                     lat: lat,
                     lng: long,
                     address: address,
-                    hoursOfOperation: hoursOfOperation
+                    hoursOfOperation: hoursOfOperation,
+                    breweryId: breweryId
                 };
                 latsAndLongs.push(latLong);
             }
@@ -147,26 +138,18 @@ CSS for the map to show up  -->
         }
 
 //initialize the map and make the address from index page the center of map
-if(place === null || 'undefined'){
+
         function initMap() {
-            var uluru = {
-                lat: 38.9072,
-                lng: -77.0369
-            };
+            var uluru = place.geometry.location;
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
+                zoom: 15,
                 center: uluru,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
         };
-    }else {
-      var uluru = place.geometry.location;
-      map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: uluru,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-    }
+
+
+var brewID;
 
 //create a marker for each object returned from the API get request
         function createMarkers(markerObjs) {
@@ -179,25 +162,22 @@ if(place === null || 'undefined'){
 //add a pop-up view for each marker
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
-                      if(markerObjs[i].hoursOfOperation === "undefined"){
                         var infowindow = new google.maps.InfoWindow();
-                        infowindow.setContent("<strong>" + markerObjs[i].name + "</strong>" + "<br>" + markerObjs[i].address + "</br>" + "<button id = 'moreInfo'> More Information </button>");
+                        infowindow.setContent("<strong>" + markerObjs[i].name + "</strong>" + "<br>" + markerObjs[i].address + "</br>" + "<br> "+ markerObjs[i].hoursOfOperation + "</br>" + "<button id = 'moreInfo'> More Information </button>");
                         infowindow.open(map, marker);
-                      }else{
-                        var infowindow = new google.maps.InfoWindow();
-                        infowindow.setContent("<strong>" + markerObjs[i].name + "</strong>" + "<br>" + markerObjs[i].address + "</br>" + "<br>" + markerObjs[i].hoursOfOperation + "</br>" + "<button id = 'moreInfo'> More Information </button>");
-                        infowindow.open(map, marker);
-                    }
+                        console.log(markerObjs[i].breweryId);
+                        localStorage.setItem('brewID', JSON.stringify(markerObjs[i].breweryId));
+                        $('#moreInfo').click(function(){
+                          $.get('brewery/:id?', function(data){
+                            {brewID: markerObjs[i].breweryId}
+                          });
+                        })
                   }
                 })(marker, i));
             }
-          }
 
-            $("#moreInfo").on('click', function(){
-              app.get('/brewery/:id', function(req, res){
-                res.render('brewery', req.id);
-              })
-            })
+
+          }
 
 
 

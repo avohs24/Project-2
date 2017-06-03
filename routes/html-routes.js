@@ -33,9 +33,18 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
+app.post('/brewery/:id?', function(req, res){
+  res.render('brewery', {client : req.user, message: req.flash('Message')});
+});
+
 app.post('/', function(req, res){
-  res.redirect('/map');
-})
+  res.render("map", {client : req.user, message: req.flash('Message')});
+});
+
+
+// app.get('/brewery/:id', function(req, res){
+//   res.render('brewery', req.body.id);
+// })
 
 };
 
