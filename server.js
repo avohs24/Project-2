@@ -49,7 +49,7 @@ app.use(passport.session()); // persistent login sessions
 
 
 // Import routes and give the server access to them.
-require("./routes/html-routes.js")(app);
+require("./routes/html-routes.js")(app, rp);
 require("./routes/sql-routes.js")(app, passport);
 require('./config/passport')(app, passport); // pass passport for configuration
 require("./routes/brewerydb-routes.js")(app, rp);

@@ -3,26 +3,25 @@
         <div class="col s3">
           <label> Category </label>
           <select class="browser-default" id="category">
-              <option></option>
+              <option>---SELECT A CATEGORY---</option>
           </select>
         </div>
         <div class="col s3">
           <label> Style </label>
-          <select class="browser-default" id="style">
-              <option></option>
+          <select name="style" class="browser-default" id="style">
           </select>
         </div>
-
+        <div class="col s1">
+          <button type="submit" id="getBeers" class="btn waves-effect waves-light brown darken-2">Search</button>
+        </div>
     </div>
-<!-- <p id="JSON1"> {{jsonObject}} </p> -->
+    <div class="row">
+      <div id ="beerlist" class="col s6">
+
+      </div>
+    </div>
+
+
 <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
-var fullJSON;
-$(document).ready(function() {
-    $.ajax({
-      url: "./categories",
-    }).done(function(data) {
-      fullJSON = data;
-    });
-});
-</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script type="text/javascript" src="assets/js/beers.js"></script>

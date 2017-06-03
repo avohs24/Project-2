@@ -28,7 +28,6 @@ module.exports = function(app, passport) {
       passReqToCallback: true // allows us to pass back the entire request to the callback
     },
     function(req, username, password, done) {
-      console.log(req.body);
       //Create a Constructor for user password
       var generateHash = function(password) {
           return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
@@ -58,7 +57,7 @@ module.exports = function(app, passport) {
                     state: req.body.state,
                     zipcode: req.body.zipcode
                 };
-                console.log(newUser);
+
                 db.client.create(newUser).then(function(data) {
                     //If there is no data created
                     if (!data) {
