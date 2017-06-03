@@ -3,7 +3,7 @@ var brewId="eRrmuR";
 $(document).ready(function() {
 
 
-$("#test").click(function() {
+
 
     console.log(brewId);
     $.post("./brewerysearch", {"brewId" : brewId}
@@ -39,5 +39,3 @@ $("#test").click(function() {
         .catch((err) =>{console.log('Error: ', err)});
 
       });
-
-});
