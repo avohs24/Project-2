@@ -1,35 +1,38 @@
 var resp;
-var brewId="eRrmuR";
-
-
-    $.post("./brewerysearch", {"brewId" : brewId}
+    $.post("./brewerysearch", {"brewId" : reqId}
   ).done(function(data) {
 
             resp = JSON.parse(data);
             console.log(resp.data.name);
             var name = resp.data.name;
             console.log(resp.data.name);
+            if (resp.data.established){
             var established = resp.data.established;
-            var description = resp.data.description
-            var image = resp.data.images.medium
-            var website = resp.data.website
-            $("#brewImage").html("<img src=" + image + ">");
-            $("#brewName").html("<h4>" + name + "</h4>");
             $("#brewEstablished").html("<h5> <b> Established In: </b> " + established + "</h5>");
+            }
+            if (resp.data.description){
+            var description = resp.data.description
             $("#brewDescription").html("<h5> <b> Description: </b>" + "<br />" +  description + "<br />" + "</h5>");
-            $("#brewWebsite").html("<h5> <a href=" + website + "> Visit Website </a> </h5>");
+            }
+            if (resp.data.images){
+            var image = resp.data.images.medium
+            $("#brewImage").html("<img src=" + image + ">");
+            }
+            if (resp.data.website){
+            var website = resp.data.website
+            $("#brewWebsite").html("<h5><a href='" + website + "' target='_blank' method='GET'> Visit Website </a> </h5>");
+            }
 
-            console.log("****NAME****");
-            console.log(resp.data.name);
-            console.log("****ESTABLISHED****");
-            console.log(resp.data.established);
-            console.log("****DESCRIPTION****");
-            console.log(resp.data.description);
-            console.log("****IMAGE****");
-            console.log(resp.data.images.medium);
-            console.log("****WEBSITE****");
-            console.log(resp.data.website);
+            $("#brewName").html("<h1>" + name + "</h1>");
+
+            $(".addClientBrewery").click(function(){
+
+              $.post("./addBrewery", {"breweryID" : resp.data.id, "name" : resp.data.name}
+            ).done(function(data){
+
+            });
 
 
-        })
-        .catch((err) =>{console.log('Error: ', err)});
+
+        });
+    });

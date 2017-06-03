@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var location = sequelize.define("location", {
+  var locations = sequelize.define("location", {
     id: {
    type: DataTypes.INTEGER,
    primaryKey: true,
@@ -18,13 +18,6 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 50]
       }
     },
-    streetAddress: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        len: [1, 50]
-      }
-  },
 });
-return location;
+return locations;
 };

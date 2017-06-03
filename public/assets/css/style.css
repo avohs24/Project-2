@@ -111,3 +111,23 @@ main {
 #styles{
   color: wheat;
 }
+
+#BreweryHeader{
+  text-align: center;
+  color: wheat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#breweryDescription{
+  text-align: center;
+  color: wheat;
+  background-color: rgba(0,0,0,.4);
+}
+
+.brewLinks{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

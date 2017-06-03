@@ -19,10 +19,15 @@ app.get("/beers", function(req, res){
     res.render("beer", {client : req.user, message: req.flash('Message'), clientData: data });
 });
 
-app.get("/brewery/:id?", function(req, res){
+app.get("/brewery:id*?", function(req, res){
   var data = findUserData(req.user);
-  res.render("brewery", {client : req.user, message: req.flash('Message'), clientData: data });
+  console.log(req.params.id);
+  res.render("brewery", {client : req.user, message: req.flash('Message'), clientData: data, thisBrewery: req.params.id });
 });
+
+app.get("/beerdata:id*?", function(req, res){
+  
+})
 
 app.get("/signup", function(req, res){
   var data = findUserData(req.user);
@@ -41,7 +46,7 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-app.post('/brewery/:id?', function(req, res){
+app.post('/brewery/', function(req, res){
   res.render('brewery', {client : req.user, message: req.flash('Message')});
 });
 

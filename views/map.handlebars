@@ -1,6 +1,6 @@
   <div class="row">
     <!-- form to enter state you would like to populate -->
-    <form>
+    <!-- <form>
         <div class="row">
             <div class="input-field col s12">
                 <select name="state" id="state">
@@ -58,14 +58,15 @@
                 </select>
             </div>
         </div>
-    </form>
+    </form> -->
   </div>
 </div>
 
-<button id='submit'>Submit</button>
+<!-- <button id='submit'>Submit</button> -->
 
 
 <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
+
 <!--
 CSS for the map to show up  -->
     <style>
@@ -84,7 +85,6 @@ CSS for the map to show up  -->
     </script>
     <script type="text/javascript">
 
-
       $(document).ready(function() {
       $('select').material_select();
         });
@@ -97,45 +97,97 @@ query(place);
 
             function query(state){
                 // var queryURL = "https://api.brewerydb.com/v2/locations?key=70a61c6760fc3a51e28ad788197d9359&region=" + state;
-                var query1 = "https://api.brewerydb.com/v2/locations?key=70a61c6760fc3a51e28ad788197d9359&region=" + place.address_components[4].long_name;
-                console.log(query1);
-                $.ajax({
-                        url: query1,
-                        beforeSend: function(request) {
-                            request.setRequestHeader("Authorization", "Negotiate");
-                        },
-                        async: true,
-                        method: 'GET'
-                    })
-                    .done(function(response) {
-                        var results = response.data;
-                        var cleanData = cleanUp(results);
-                        createMarkers(cleanData);
-                    })
+                // var query1 = "https://api.brewerydb.com/v2/locations?key=70a61c6760fc3a51e28ad788197d9359&region=" + place.address_components[4].long_name;
+                // console.log(query1);\
+                console.log(place.address_components[4].long_name);
+                $.post({
+                  url : "./mapget",
+                  beforeSend : function(request) {
+                      request.setRequestHeader("Authorization", "Negotiate");
+                  },
+                  async: true,
+                  data : {"longname" : place.address_components[4].long_name}
+                })
+                .done(function(results){
+
+                  results = JSON.parse(results);
+                  //format results of API get request to make it easier to work with and push all information needed to an empty array
+                          function cleanUp(results) {
+                              var latsAndLongs = [];
+                              for (var i = 0; i < results.length; i++) {
+                                // console.log(results[i]);
+                                  var lat = results[i].latitude;
+                                  var long = results[i].longitude;
+                                  var name = results[i].brewery.name;
+                                  var address = results[i].streetAddress;
+                                  var hoursOfOperation = results[i].hoursOfOperation;
+                                  var breweryId = results[i].id;
+                                  var latLong = {
+                                      name: name,
+                                      lat: lat,
+                                      lng: long,
+                                      address: address,
+                                      hoursOfOperation: hoursOfOperation,
+                                      breweryId: breweryId
+                                  };
+                                  latsAndLongs.push(latLong);
+                              }
+                              return latsAndLongs;
+                          }
+
+                          //create a marker for each object returned from the API get request
+                                  function createMarkers(markerObjs) {
+                                      var marker, i;
+                                      for (var i = 0; i < markerObjs.length; i++) {
+                                          marker = new google.maps.Marker({
+                                              position: new google.maps.LatLng(markerObjs[i].lat, markerObjs[i].lng),
+                                              map: map
+                                          });
+                          //add a pop-up view for each marker
+                                          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                              return function() {
+                                                  var infowindow = new google.maps.InfoWindow();
+                                                  infowindow.setContent("<strong>" + markerObjs[i].name + "</strong>" + "<br>" + markerObjs[i].address + "</br>" + "<br> "+ markerObjs[i].hoursOfOperation + "</br>" + "<a href='/brewery" + markerObjs[i].breweryId +"'> More Information </a>");
+                                                  infowindow.open(map, marker);
+                                                  console.log(markerObjs[i].breweryId);
+                                                  localStorage.setItem('brewID', JSON.stringify(markerObjs[i].breweryId));
+                                                  $('#moreInfo').click(function(){
+                                                    console.log("TEST");
+                                                    $.post('/brewery', function(data){
+                                                      {brewID: markerObjs[i].breweryId}
+                                                    });
+
+                                                  });
+                                            }
+                                          })(marker, i));
+
+                                      }
+
+
+                                    }
+
+
+
+
+                  var cleanData = cleanUp(results.data);
+                  createMarkers(cleanData);
+                  })
+                // $.ajax({
+                //         url: query1,
+                //         beforeSend: function(request) {
+                //             request.setRequestHeader("Authorization", "Negotiate");
+                //         },
+                //         async: true,
+                //         method: 'GET'
+                //     })
+                //     .done(function(response) {
+                //         var results = response.data;
+                //         var cleanData = cleanUp(results);
+                //         createMarkers(cleanData);
+                //     })
             }
 
-//format results of API get request to make it easier to work with and push all information needed to an empty array
-        function cleanUp(results) {
-            var latsAndLongs = [];
-            for (var i = 0; i < results.length; i++) {
-                var lat = results[i].latitude;
-                var long = results[i].longitude;
-                var name = results[i].brewery.name;
-                var address = results[i].streetAddress;
-                var hoursOfOperation = results[i].hoursOfOperation;
-                var breweryId = results[i].id;
-                var latLong = {
-                    name: name,
-                    lat: lat,
-                    lng: long,
-                    address: address,
-                    hoursOfOperation: hoursOfOperation,
-                    breweryId: breweryId
-                };
-                latsAndLongs.push(latLong);
-            }
-            return latsAndLongs;
-        }
+
 
 //initialize the map and make the address from index page the center of map
 
@@ -151,33 +203,7 @@ query(place);
 
 var brewID;
 
-//create a marker for each object returned from the API get request
-        function createMarkers(markerObjs) {
-            var marker, i;
-            for (var i = 0; i < markerObjs.length; i++) {
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(markerObjs[i].lat, markerObjs[i].lng),
-                    map: map
-                });
-//add a pop-up view for each marker
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                    return function() {
-                        var infowindow = new google.maps.InfoWindow();
-                        infowindow.setContent("<strong>" + markerObjs[i].name + "</strong>" + "<br>" + markerObjs[i].address + "</br>" + "<br> "+ markerObjs[i].hoursOfOperation + "</br>" + "<button id = 'moreInfo'> More Information </button>");
-                        infowindow.open(map, marker);
-                        console.log(markerObjs[i].breweryId);
-                        localStorage.setItem('brewID', JSON.stringify(markerObjs[i].breweryId));
-                        $('#moreInfo').click(function(){
-                          $.get('brewery/:id?', function(data){
-                            {brewID: markerObjs[i].breweryId}
-                          });
-                        })
-                  }
-                })(marker, i));
-            }
 
-
-          }
 
 
 
