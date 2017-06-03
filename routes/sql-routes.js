@@ -16,7 +16,7 @@ app.post('/login', passport.authenticate('local-login', {
 
 app.post('/addBeer', function(req, res){
   if (req.user === undefined){
-    res.send(req.flash('Message', "Please Log In First!"));
+    res.send("Please Log In First!");
   }
   db.beers.findOne({ where: { beerID: req.body.beerID }})
     .then(function(data){
@@ -26,14 +26,24 @@ app.post('/addBeer', function(req, res){
           "clientID" : clientID,
           "beerID" : dbBeer
         }
-        db.clientBeer.create(clientBeer).then( (data) => {
+        db.clientBeer.findOne({where: clientBeer})
+        .then(function(data){
           if (!data){
-            res.redirect("/", req.flash('Message', "An Error Occured Saving Your Beer. Please Try Again"));
+            db.clientBeer.create(clientBeer).then( (data) => {
+              if (!data){
+                res.redirect("/", req.flash('Message', "An Error Occured Saving Your Beer. Please Try Again"));
+              }
+              if (data){
+                res.send("TEST");
+              }
+            });
           }
           if (data){
-            res.send("TEST");
+
+            console.log("ALERT ALERT ALERT");
           }
         });
+
       }
 
       if (data){

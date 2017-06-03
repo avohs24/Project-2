@@ -3,7 +3,12 @@ var catArray;
 var styleObj;
 var beerlist;
 var results;
+var page = 0;
+var thispageEnd = 3;
+var createList;
+var resultslength = 0;
 $(document).ready(function() {
+
     $.ajax({
         url: "./categories",
     }).done(function(data) {
@@ -72,6 +77,8 @@ $(document).ready(function() {
     }).change();
 
     $("#getBeers").click(function(){
+      page = 0;
+      thispageEnd = 3;
       var styleId = $("#style").val();
       $.post("./beersearch", {"styleId" : styleId}
       ).done(function(data) {
@@ -91,38 +98,56 @@ $(document).ready(function() {
 
           results = findBeers(beerlist);
 
-          function createList(results){
-            $("#beerlist").empty();
-            var list = "<div id='wrap'>\n";
-            for (var i = 0; i < Object.keys(results).length; i++){
-                var thisDiv = "<div id='beerID" + [i] +"' bID='" + results[i].id +"'>\n ";
-                thisDiv += "<h3>Name: </h3>";
-                thisDiv += "<p class='name' id='name"+ [i] +"'>" + results[i].name + "</p> \n";
-                thisDiv += "<h3>Description</h3>\n"
-                if (results[i].description === undefined){
-                thisDiv += "<p class='description' id='description"+ [i] + "'> N/A </p> \n";
-                }
-                else{
-                thisDiv += "<p class='description' id='description"+ [i] + "'>" + results[i].description + "</p> \n";
-                }
-                thisDiv += "<button value='" + [i] + "' class='addClientBeer'> Save Beer </button>"
-                thisDiv += "</div>\n"
-                list += thisDiv;
-            }
-            list += "</div>\n";
-            list += "<button id='previous' class='btn waves-effect waves-light brown darken-2'>Previous</button>"
-            list += "<button id='next' class='btn waves-effect waves-light brown darken-2'>Next</button>"
-            $("#beerlist").html(list);
-            // var page = 1
-            // for (var i = 7; i < Object.keys(results).length; i + 7){
-            //   var fSlice = [i] - 7
-            //   var thispage = "page" + page;
-            //   $("#wrap > div").slice(fSlice ,[i]).addClass(thispage);
-            // }
+          resultslength = results.length;
 
-          }
-          createList(results);
-          var page = 1;
+          createList = function(results){
+            $("#beerlist").empty();
+
+            console.log("page", page);
+            console.log("thispageEnd", thispageEnd);
+
+
+            var thisList = "<div class='row'>";
+              for (var i = page; i < thispageEnd; i++){
+              var thisDiv = "<div class='col s4 beerItem' id='beerID" + i +"' bID='" + results[i].id +"'>\n ";
+                  thisDiv += "<h3>Name: </h3>";
+                  thisDiv += "<p class='name' id='name"+ i +"'>" + results[i].name + "</p> \n";
+                  thisDiv += "<h3>Description</h3>\n"
+                  if (results[i].description === undefined){
+                  thisDiv += "<p class='description' id='description"+ i + "'> N/A </p> \n";
+                  }
+                  else{
+                  thisDiv += "<p class='description' id='description"+ i + "'>" + results[i].description + "</p> \n";
+                  }
+                  thisDiv += "<button value='" + [i] + "' class='addClientBeer'> Save Beer </button>"
+                  thisDiv += "</div>\n"
+                  thisList += thisDiv;
+            }
+            thisList += "</div>\n"
+            thisList += "<div class='row'>"
+            thisList += "<div class='col s4 beerButton'> <button class='btn waves-effect waves-light brown darken-2' id='previous'>Previous</button></div>\n"
+            thisList += "<div class='col s4 offset-s4 beerButton'> <button class='btn waves-effect waves-light brown darken-2' id='next'>Next</button></div>"
+            $("#beerlist").html(thisList);
+
+            $("#next").click(() =>{
+
+                page +=3;
+                thispageEnd +=3
+                createList(results);
+
+            });
+            $("#previous").click(() =>{
+              if (page - 3 > 0 ){
+                page -=3;
+                thispageEnd -=3
+                createList(results);
+              }
+            });
+          };
+            createList(results);
+            $("main").css("flex", "1 0 auto");
+
+
 
           $(".addClientBeer").click(function(){
             fired_button = $(this).val();
@@ -138,7 +163,7 @@ $(document).ready(function() {
             $.post("./addBeer", {"beerID" : beerID, "name" : name, "description" : description}
           ).done(function(data){
 
-          })
+          });
 
           });
         });
@@ -146,4 +171,4 @@ $(document).ready(function() {
 
 
 
-});
+  });
