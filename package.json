@@ -1,11 +1,15 @@
 {
   "name": "mybrew",
   "version": "1.0.0",
-  "description": "",
+  "description": "Our app utilizes the myBrewery API and the unTappd API to show you local breweries in your area and cross reference that with popular beers on Untappd. This will provide users with a very customizable and personalized expierence We will be storing our data in MYSQL. We will also have a map page that displays the closest Breweries.  Our extra libraries will be Materialize and Green Sock.",
   "main": "server.js",
   "scripts": {
     "test": "mocha",
     "start": "node server.js"
+  },
+  "engines": {
+    "node": "7.7.2",
+    "npm": "4.1.2"
   },
   "author": "",
   "license": "ISC",
@@ -27,10 +31,22 @@
     "passport-local": "^1.0.0",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
-    "sequelize": "^3.30.4"
+    "sequelize": "^3.30.4",
+    "sequelize-heroku": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.4.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avohs24/Project-2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/avohs24/Project-2/issues"
+  },
+  "homepage": "https://github.com/avohs24/Project-2#readme"
 }
