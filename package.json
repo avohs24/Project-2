@@ -7,10 +7,6 @@
     "test": "mocha",
     "start": "node server.js"
   },
-  "engines": {
-    "node": "7.7.2",
-    "npm": "4.1.2"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -48,5 +44,9 @@
   "bugs": {
     "url": "https://github.com/avohs24/Project-2/issues"
   },
-  "homepage": "https://github.com/avohs24/Project-2#readme"
+  "homepage": "https://github.com/avohs24/Project-2#readme",
+  "engines": {
+    "node": "7.7.2",
+    "npm": "4.1.2"
+  }
 }
